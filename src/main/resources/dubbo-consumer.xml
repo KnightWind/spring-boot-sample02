@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<dubbo:application name="hello-consumer" /> 
+    <!-- <dubbo:application name="pigeon-consumer" owner="programmer" organization="dubbox"/>
+    -->
+    <dubbo:registry address="zookeeper://172.16.30.49:2181"/> 
+    <dubbo:consumer timeout="5000"/>  
+    <!-- which service to consume? -->  
+	<dubbo:reference id="helloService"   interface="com.wcb.dubbo.test.SayHello" />
+    
+</beans>

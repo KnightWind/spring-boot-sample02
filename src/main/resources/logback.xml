@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 日志保存路径为tomcat下面的logs下面的App文件夹，logback会自动创建文件夹，这样设置了就可以输出日志文件了 -->
+	<property name="logbase" value="${catalina.base}/xinyou/logs/" />
+	<!-- <property name="logbase" value="${user.dir}/logs/App/" /> -->
+
+	<!-- 这个是要配置输出文件的 -->
+	<jmxConfigurator />
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
+	<appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${logbase}log.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${logbase}log.%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<MaxHistory>20</MaxHistory>
+			
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+	    		<MaxFileSize>10MB</MaxFileSize>
+	  		</TimeBasedFileNamingAndTriggeringPolicy>    
+		</rollingPolicy>
+		
+		<!--  <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> 
+		<MaxFileSize>10MB</MaxFileSize> 
+		</triggeringPolicy>-->
+		    
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="errorfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${logbase}error.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${logbase}error.%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<MaxHistory>20</MaxHistory>
+			
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+	    		<MaxFileSize>5MB</MaxFileSize>
+	  		</TimeBasedFileNamingAndTriggeringPolicy>    
+		</rollingPolicy>
+		
+		<!--  <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> 
+		<MaxFileSize>10MB</MaxFileSize> 
+		</triggeringPolicy>-->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+		
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->  
+	        <level>ERROR</level>  
+	        <onMatch>ACCEPT</onMatch>  
+	        <onMismatch>DENY</onMismatch>  
+	    </filter> 
+	</appender>
+	<!-- Output by Email -->
+	<!-- <appender name="Email" class="ch.qos.logback.classic.net.SMTPAppender"> <SMTPHost>stmp host name</SMTPHost> <To>Email Address</To> <To>Email Address</To> <From>Email Address</From> <Subject>TESTING 
+		Email Function: %logger{20} - %m</Subject> <layout class="ch.qos.logback.classic.html.HTMLLayout"> <pattern>%date%level%thread%10logger%file%line%msg</pattern> </layout> </appender> -->
+	<!-- Output to Database -->
+	<!-- <appender name="DB" class="ch.qos.logback.classic.db.DBAppender"> <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource"> <driverClass>com.mysql.jdbc.Driver</driverClass> 
+		<url>jdbc:mysql://localhost:3306/test</url> <user>root</user> <password>trend_dev</password> </connectionSource> </appender> -->
+	
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="logfile" />
+		<appender-ref ref="errorfile" />
+	</root>
+	
+<!-- 	<logger name="com.fpx" level="WARN" addtivity="true"> -->
+<!-- 		<appender-ref ref="errorfile" /> -->
+<!-- 	</logger> -->
+	<!-- <logger name="org.springframework" level="WARN"/>
+    <logger name="com.opensymphony" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/> -->
+</configuration>
