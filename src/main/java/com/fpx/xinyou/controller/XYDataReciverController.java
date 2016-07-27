@@ -62,8 +62,8 @@ public class XYDataReciverController {
 //	@Resource(name="caiNiaoTrackQueue")
 //	Destination caiNiaoTrackQueue;
 	
-	@Resource
-	SayHello helloService;
+//	@Resource
+//	SayHello helloService;
 	
 /**
 	private static final Logger logger = Logger.getLogger(XYDataReciverController.class);
@@ -124,9 +124,9 @@ public class XYDataReciverController {
 	 @RequestMapping(value = "/test")
 	 public Object login() throws Exception{
 		 
-		 String welcome = helloService.sayHello("wang");
-		 
-		 System.out.println("dubbo service say: "+welcome);
+//		 String welcome = helloService.sayHello("wang");
+//		 
+//		 System.out.println("dubbo service say: "+welcome);
 //		 List<Map<String,Object>> mqData = new  ArrayList<Map<String,Object>>();
 //		 
 //		 Map<String,Object> data = new HashMap<String, Object>();

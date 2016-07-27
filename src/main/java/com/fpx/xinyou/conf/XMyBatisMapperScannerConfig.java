@@ -11,8 +11,8 @@ import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 @Configuration
 @AutoConfigureAfter(XMybatisConfig.class)
-@ImportResource(locations={"classpath:applicationContext-transaction.xml","classpath:dubbo-consumer.xml"})
-public class XMyBatisMapperScannerConfig {
+@ImportResource(locations={"classpath:applicationContext-transaction.xml","classpath:dubbo-provider.xml"})
+public class XMyBatisMapperScannerConfig { //"classpath:dubbo-consumer.xml",
 
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {

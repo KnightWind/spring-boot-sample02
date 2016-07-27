@@ -9,6 +9,19 @@ logging:
 spring:
    datasource:
       initialize: false
+   redis:
+   	  database:
+   	  host:
+   	  password:
+   	  port: 6888
+   	  pool:
+   	    max-idle: 8
+   	    min-idle: 0
+   	    max-active: 8
+   	    max-wait: -1
+# 	  sentinel:
+# 	  	master: 
+# 	  	nodes: 
 
 mvc:
    view:
